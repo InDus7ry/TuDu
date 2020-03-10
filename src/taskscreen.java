@@ -14,12 +14,14 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import java.awt.SystemColor;
+import javax.swing.Box;
 
 public class taskscreen {
 
 	private JFrame frame;
 	private JTable table;
 	public Color baseUI = new Color(187,187,187);
+	private JCheckBox[] Tasks;
 
 	/**
 	 * Launch the application.
@@ -55,7 +57,7 @@ public class taskscreen {
 		frame.setMaximumSize(new Dimension(607, 1080));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBackground(baseUI);
-		frame.getContentPane().setLayout(new MigLayout("", "[571px]", "[][1019px]"));
+		frame.getContentPane().setLayout(new MigLayout("", "[571px]", "[][][1019px]"));
 		
 		JLabel lblNewLabel = new JLabel("TuDu");
 		lblNewLabel.setPreferredSize(new Dimension(607, 146));
@@ -63,13 +65,15 @@ public class taskscreen {
 		lblNewLabel.setBackground(baseUI);
 		frame.getContentPane().add(lblNewLabel, "flowx,cell 0 0,alignx center,aligny center");
 		
+		
+		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.5);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		frame.getContentPane().add(splitPane, "cell 0 1,grow");
+		frame.getContentPane().add(splitPane, "cell 0 2,grow");
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
-		splitPane.setLeftComponent(chckbxNewCheckBox);
+		Box verticalBox = Box.createVerticalBox();
+		splitPane.setLeftComponent(verticalBox);
 		
 		table = new JTable();
 		splitPane.setRightComponent(table);
