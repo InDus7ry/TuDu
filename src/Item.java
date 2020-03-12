@@ -5,12 +5,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Item {
-	public ArrayList<String> members;
-	public String info;
-	
+	public ArrayList<String> members = new ArrayList<String>();
+	public String name;
 	LocalTime[] reminders;
-	public Item(LocalTime[] reminders, String[] members) {
+	
+	
+	public Item(String name, LocalTime[] reminders, String[] members) {
 		this.reminders=reminders;
+		this.name=name;
 		for(String s : members) {
 			this.members.add(s);
 		}
@@ -29,7 +31,7 @@ public class Item {
 	 * @return info
 	 */
 	public String sendReminder() {
-		return info;
+		return name;
 	}
 	/*
 	 * The method used to add metadata:

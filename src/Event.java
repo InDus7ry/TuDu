@@ -8,8 +8,8 @@ public class Event extends Item{
 	private LocalTime time; 
 	private Duration duration;
 	LocalTime[] reminders;
-	public Event(LocalDate date, LocalTime time, Duration duration, LocalTime[] reminders, String[] members) {
-		super(reminders, members);
+	public Event(String name, LocalDate date, LocalTime time, Duration duration, LocalTime[] reminders, String[] members) {
+		super(name, reminders, members);
 		this.date=date;
 		this.time=time;
 		this.duration=duration;
