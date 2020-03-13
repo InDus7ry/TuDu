@@ -1,23 +1,23 @@
 //@author Gabe Wong
 //@version %I%
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Item {
 	public ArrayList<String> members = new ArrayList<String>();
 	public String name;
-	LocalTime[] reminders;
+	LocalDate[] reminders;
 	
 	
-	public Item(String name, LocalTime[] reminders, String[] members) {
+	public Item(String name, LocalDate[] reminders, String[] members) {
 		this.reminders=reminders;
 		this.name=name;
 		for(String s : members) {
 			this.members.add(s);
 		}
 	}
-	
 	/*
 	 * The method used for external access to members. 
 	 * @return members
@@ -36,7 +36,7 @@ public class Item {
 	/*
 	 * The method used to add metadata:
 	 */
-	public void changeData(LocalTime[] reminders, String[] members) {
+	public void changeData(LocalDate[] reminders, String[] members) {
 		this.reminders=reminders;
 		for(String s : members) {
 			this.members.add(s);

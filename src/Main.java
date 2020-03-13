@@ -3,6 +3,7 @@
 
 import java.awt.EventQueue;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Main {
@@ -10,11 +11,11 @@ public class Main {
 		ArrayList<Task> tasks = new ArrayList<Task>();
 		@SuppressWarnings("unused")
 		ArrayList<Event> events = new ArrayList<Event>();
-		GUI mgui = new GUI();
+		LoginScreen login = new LoginScreen();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mgui.initialize();
+					login.initialize();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -22,12 +23,19 @@ public class Main {
 		});
 		String[] mem = new String[1];
 		mem[0]="Gabe";
-		LocalTime[] rem = new LocalTime[1];
-		rem[0]=LocalTime.of(4,20,50,69);
-		tasks.add(new Task("Just Do It, Nike(tm)", 1, rem, mem));
+		int[] rem = new int[1];
+		rem[0]=5;
+		tasks.add(new Task("Just Do It, Nike(tm)", 1, adjust(rem, LocalDate.of(4,20,50)), mem));
 		Task temp = tasks.get(0);
 		System.out.println(temp.returnMembers());
 		System.out.println(temp.sendReminder());
 		
+	}
+	public static LocalDate[] adjust(int[] rems, LocalDate date) {
+		LocalDate[] adjusted=new LocalDate[rems.length];
+		for(int i: rems) {
+			date.minus(i, ChronoUnit.HOURS);
+		}
+		return adjusted;
 	}
 }

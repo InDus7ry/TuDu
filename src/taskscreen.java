@@ -1,26 +1,33 @@
 import net.miginfocom.swing.MigLayout;
 import java.util.ArrayList;
 import java.awt.event.*;
+import java.time.LocalDate;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class taskscreen {
+public class TaskScreen {
 
 	private JFrame frame;
 	private JTable table;
 	public Color baseUI = new Color(187,187,187);
-	private ArrayList<JCheckBox> Tasks = new ArrayList<JCheckBox>();
+	private ArrayList<JCheckBox> taskBoxes = new ArrayList<JCheckBox>();
+	private static ArrayList<Task> tasks= new ArrayList<Task>();
 	private JTextField textField;
-
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		String[] mem = new String[1];
+		mem[0]="Gabe";
+		LocalDate[] rem = new LocalDate[1];
+		rem[0]=LocalDate.of(4,12,15);
+		tasks.add(new Task("Just Do It, Nike(tm)", 1, rem, mem));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					taskscreen window = new taskscreen();
+					TaskScreen window = new TaskScreen(tasks);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,8 +39,12 @@ public class taskscreen {
 	/**
 	 * Create the application.
 	 */
-	public taskscreen() {
-		Tasks.add(new JCheckBox("Just Do It, Nike(tm): Priority 1"));
+	public TaskScreen(ArrayList<Task> tasks) {
+		TaskScreen.tasks=tasks;
+		for(Task task: tasks) {
+			taskBoxes.add(new ExtendedJCheckBox(task.name, task));
+		}
+		taskBoxes.add(new JCheckBox("Just Do It, Nike(tm): Priority 1"));
 		initialize();
 	}
 
@@ -103,12 +114,15 @@ public class taskscreen {
 		});
 		Box verticalBox = Box.createVerticalBox();
 		verticalBox.setRequestFocusEnabled(false);
-		for(JCheckBox task : Tasks) {
-			verticalBox.add(task);
-			task.addActionListener(new ActionListener() {
+		for(JCheckBox taskBox : taskBoxes) {
+			verticalBox.add(taskBox);
+			taskBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					verticalBox.remove(task);
-					task.complete();
+					verticalBox.remove(taskBox);
+//					verticalBox.update(g);
+					System.out.println(verticalBox);
+					verticalBox.add(new JCheckBox("Just Do It, Nike(tm): Priority 1"));
+					System.out.println(verticalBox);
 					frame.repaint();
 				}
 

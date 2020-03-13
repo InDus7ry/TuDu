@@ -8,7 +8,7 @@ import javax.swing.border.LineBorder;
 import net.miginfocom.swing.MigLayout;
 
 
-public class GUI {
+public class LoginScreen {
 
 	private JFrame frame;
 	private JLabel lblNewLabel_1;
@@ -27,7 +27,7 @@ public class GUI {
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
+	public LoginScreen() {
 		truePass=new char[10];
 		for(int i=0; i<truePass.length; i++) {
 			truePass[i]="Password12".charAt(i);
@@ -39,7 +39,7 @@ public class GUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void loginScreen() {
+	public void initialize() {
 		/**
 		 * Set up the frame
 		 */
