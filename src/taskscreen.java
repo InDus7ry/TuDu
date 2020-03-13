@@ -1,30 +1,9 @@
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.event.*;
-
-import javax.swing.JFrame;
-import javax.swing.JSplitPane;
-import java.awt.BorderLayout;
-import java.awt.Color;
-
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JTable;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.Box;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.JRadioButton;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class taskscreen {
 
@@ -71,15 +50,39 @@ public class taskscreen {
 		frame.setBackground(baseUI);
 		frame.getContentPane().setLayout(null);
 		
+		
+		table=new JTable();
+		table.setBounds(new Rectangle(0, 0, 285, 472));
+		table.setFocusable(false);
+		table.setRowSelectionAllowed(false);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		
+		
 		JLabel lblNewLabel = new JLabel("TuDu");
 		lblNewLabel.setBounds(16, 16, 472, 73);
 		lblNewLabel.setPreferredSize(new Dimension(607, 146));
 		lblNewLabel.setFont(new Font("Myriad Pro SemiExt", Font.PLAIN, 28));
 		lblNewLabel.setBackground(baseUI);
 		
-		
-		
-		
+
 		JButton btnNewButton = new JButton("Settings");
 		btnNewButton.setBounds(492, 16, 95, 73);
 		btnNewButton.setPreferredSize(new Dimension(89, 146));
@@ -98,31 +101,40 @@ public class taskscreen {
 			}
 
 		});
-		
-		
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setBounds(16, 97, 571, 945);
-		splitPane.setResizeWeight(0.5);
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		
-		
 		Box verticalBox = Box.createVerticalBox();
+		verticalBox.setRequestFocusEnabled(false);
 		for(JCheckBox task : Tasks) {
 			verticalBox.add(task);
 			task.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					verticalBox.remove(task);
+					task.complete();
 					frame.repaint();
 				}
 
 			});
 		}
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBounds(16, 97, 571, 945);
+		splitPane.setResizeWeight(0.5);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setLeftComponent(verticalBox);
 		splitPane.setRightComponent(table);
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
+		table.getColumnModel().getColumn(5).setResizable(false);
+		table.getColumnModel().getColumn(6).setResizable(false);
+//		table.setRowHeight((splitPane.getLastDividerLocation()*1080Bounds(new Rectangle(0, 0, 285, 472));
+		
+		
 		
 		JPopupMenu popupMenu = new JPopupMenu();
-		popupMenu.setBounds(0, 0, 60, 16);
-		frame.getContentPane().add(popupMenu);
+		addPopup(frame.getContentPane(), popupMenu);
+		popupMenu.setBounds(50, 0, 60, 16);
 		
 		JLabel lblNewLabel_1 = new JLabel("Name");
 		popupMenu.add(lblNewLabel_1);

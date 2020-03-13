@@ -7,13 +7,13 @@ public class Event extends Item{
 	private LocalDate date;
 	private LocalTime time; 
 	private Duration duration;
-	LocalTime[] reminders;
-	public Event(String name, LocalDate date, LocalTime time, Duration duration, LocalTime[] reminders, String[] members) {
-		super(name, reminders, members);
+	int[] hourReminders;
+	public Event(String name, LocalDate date, LocalTime time, Duration duration, int[] hourReminders, String[] members) {
+		super(name, hourReminders, members);
 		this.date=date;
 		this.time=time;
 		this.duration=duration;
-		this.reminders=reminders;
+		this.hourReminders=hourReminders;
 		for(String s : members) {
 			this.members.add(s);
 		}

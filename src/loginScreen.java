@@ -39,7 +39,7 @@ public class GUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
+	public void loginScreen() {
 		/**
 		 * Set up the frame
 		 */
@@ -160,4 +160,5 @@ public class GUI {
 		});
 		frame.getContentPane().add(btnNewButton, "cell 1 7,alignx right,growy");
 	}
+	
 }
