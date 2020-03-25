@@ -1,0 +1,2 @@
+backgroundColor: #ffffaa
+foregroundColor: #000000

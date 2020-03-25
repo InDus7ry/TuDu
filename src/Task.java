@@ -1,13 +1,17 @@
+import java.io.Serializable;
+
 //@author Gabe Wong
 //@version %I%
 
-import java.time.*;
-import java.util.ArrayList;
-public class Task extends Item{
+public class Task extends Item implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int priority;
 	private boolean complete=false;
 	private String info;
-	public Task(String name, int priority, LocalDate[] reminders, String[] members) {
+	public Task(String name, int priority, String[] reminders, String[] members) {
 		super(name, reminders, members);
 		this.priority=priority;
 		this.reminders=reminders;
@@ -18,15 +22,22 @@ public class Task extends Item{
 		info+=": Priority "+priority;
 		return info;
 	}
+	
+	public int getPriority() {
+		return priority;
+	}
 	public void complete() {
 		complete=true;
 	}
 	public void uncomplete() {
 		complete=false;
 	}
+	public boolean isComplete() {
+		return complete;
+	}
 	@Override
 	public String toString() {
-		return "Task [priority=" + priority + ", complete=" + complete + ", info=" + info + "]";
+		return name+"; "+priority+"; "+reminders+"; "+members;
 	}
 	
 }
