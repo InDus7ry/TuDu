@@ -9,14 +9,14 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
 class TaskCellRenderer extends JLabel implements ListCellRenderer<Object>{
-	DefaultListModel<Task> model;
-	ArrayList<Color> colors = new ArrayList<Color>();
+	private DefaultListModel<Task> model;
+	private ArrayList<Color> colors = new ArrayList<Color>();
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	TaskCellRenderer(DefaultListModel<Task> model){
+	public TaskCellRenderer(DefaultListModel<Task> model){
 		this.model=model;
 		colors.add(Color.red);
 		colors.add(Color.orange);

@@ -15,7 +15,7 @@ public class Item extends JComponent{
 	private static final long serialVersionUID = 1L;
 	protected ArrayList<String> members = new ArrayList<String>();
 	protected String name;
-	String[] reminders;
+	protected String[] reminders;
 	
 	
 	protected Item(String name, String[] reminders, String[] members) {

@@ -43,10 +43,10 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 public class GUI {
-	public static Color backgroundUI;
-	public static Color foregroundUI;
-	private static ArrayList<Task> tasks= new ArrayList<Task>();
-	private static ArrayList<Event> events = new ArrayList<Event>();
+	private Color backgroundUI;
+	private Color foregroundUI;
+	private ArrayList<Task> tasks= new ArrayList<Task>();
+	private ArrayList<Event> events = new ArrayList<Event>();
 	private ArrayList<String> realPasses = new ArrayList<String>();
 	private ArrayList<String> realUsers= new ArrayList<String>();
 	private Stack<String> preferencesStack = new Stack<String>();
@@ -78,7 +78,7 @@ public class GUI {
 		}
 		JFrame tempFrame = new JFrame();
 		
-		setColors(backgroundUI, tempFrame);
+		setBackground(backgroundUI, tempFrame);
 		
 		JPanel loginPanel = new JPanel(new GridLayout(2,2,5,5));
 		JTextField usernameField = new JTextField();
@@ -168,7 +168,7 @@ public class GUI {
 		pw.close();
 	}
 	
-	private void setColors(Color c, Frame f) {
+	private void setBackground(Color c, Frame f) {
 		UIManager.put("OptionPane.background", c);
 		UIManager.put("Panel.background", c);
 		refresh(f,c);
@@ -379,7 +379,7 @@ public class GUI {
 			}
 		});
 		
-		setColors(backgroundUI, frame);
+		setBackground(backgroundUI, frame);
 		
 		frame.setVisible(true);
 		
@@ -502,7 +502,7 @@ public class GUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setColors(backgroundUI, frame);
+				setBackground(backgroundUI, frame);
 				options.dispose();
 			}
 			

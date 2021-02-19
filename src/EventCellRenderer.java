@@ -11,7 +11,7 @@ class EventCellRenderer extends JLabel implements ListCellRenderer<Object>{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	EventCellRenderer(){
+	public EventCellRenderer(){
 	}
 	
 	@Override
